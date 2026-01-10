@@ -5,9 +5,13 @@
   --color-foreground: #ededed;
   
   --color-cyan-500: #00ffff;
+  --color-cyan-400: #22d3ee;
   --color-purple-500: #8b5cf6;
+  --color-purple-600: #7c3aed;
   --color-green-500: #00ff41;
   --color-red-500: #ff3333;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
   
   --font-sans: var(--font-space-grotesk);
   --font-mono: var(--font-jetbrains-mono);
@@ -21,6 +25,7 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
+  overflow-x: hidden;
 }
 
 @layer utilities {
@@ -33,19 +38,80 @@ body {
   .border-glow-cyan {
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.2), inset 0 0 5px rgba(0, 255, 255, 0.1);
   }
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .premium-gradient {
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  }
+  .premium-gradient-border {
+    position: relative;
+    background: linear-gradient(135deg, #00ffff 0%, #8b5cf6 100%);
+    padding: 1px;
+  }
+  .premium-card-hover {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .premium-card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 255, 255, 0.15), 0 0 60px rgba(139, 92, 246, 0.1);
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, #00ffff 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .animated-gradient {
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+  @keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 3s infinite;
+  }
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+  .floating {
+    animation: floating 6s ease-in-out infinite;
+  }
+  @keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: #0a0a0a;
 }
 ::-webkit-scrollbar-thumb {
-  background: #222;
+  background: linear-gradient(180deg, #00ffff 0%, #8b5cf6 100%);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00ffff;
+  background: linear-gradient(180deg, #22d3ee 0%, #7c3aed 100%);
 }
