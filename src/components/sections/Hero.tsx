@@ -131,12 +131,12 @@ export default function Hero() {
         className="absolute bottom-10 left-10 hidden lg:block glass-effect p-4 rounded-lg border border-white/10"
       >
         <div className="flex flex-col space-y-2 font-mono text-[11px] text-gray-400">
-          <span className="text-cyan-500/50">> INITIALIZING_RECON_PROTOCOLS...</span>
-          <span className="text-cyan-500/50">> SEARCHING_FOR_SINK_HOLES...</span>
-          <span className="text-cyan-500/50">> BYPASSING_WAF_ENFORCEMENT...</span>
+          <span className="text-cyan-500/50">{'>'} INITIALIZING_RECON_PROTOCOLS...</span>
+          <span className="text-cyan-500/50">{'>'} SEARCHING_FOR_SINK_HOLES...</span>
+          <span className="text-cyan-500/50">{'>'} BYPASSING_WAF_ENFORCEMENT...</span>
           <span className="text-cyan-400 font-bold animate-pulse flex items-center space-x-2">
             <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
-            <span>> ACCESS_GRANTED</span>
+            <span>{'>'} ACCESS_GRANTED</span>
           </span>
         </div>
       </motion.div>
