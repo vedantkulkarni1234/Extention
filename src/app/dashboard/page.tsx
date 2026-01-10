@@ -46,7 +46,7 @@ export default async function DashboardPage() {
                 <Package className="w-12 h-12 text-gray-700 mx-auto mb-4" />
                 <p className="text-gray-500 mb-6">You haven't acquired any tools yet.</p>
                 <Link href="/extensions" className="text-cyan-500 hover:underline uppercase text-sm font-mono tracking-widest">
-                  Browse Extensions ->
+                  Browse Extensions {'->'}
                 </Link>
               </div>
             ) : (
