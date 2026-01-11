@@ -14,15 +14,14 @@ import {
   Environment,
   Lightformer,
   RandomizedLight,
-  AccumulativeShadows,
-  RandomizedTexture
+  AccumulativeShadows
 } from '@react-three/drei';
 import { useRef, useMemo, useEffect } from 'react';
 import * as THREE from 'three';
 
 function ImpossibleShape() {
   const meshRef = useRef<THREE.Mesh>(null);
-  const materialRef = useRef<THREE.MeshDistortMaterial>(null);
+  const materialRef = useRef<any>(null);
 
   useFrame((state) => {
     if (!meshRef.current || !materialRef.current) return;
@@ -141,9 +140,7 @@ function FloatingParticles() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={count}
-          array={positions}
-          itemSize={3}
+          args={[positions, 3]}
         />
       </bufferGeometry>
       <pointsMaterial
