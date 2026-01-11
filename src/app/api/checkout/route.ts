@@ -9,6 +9,10 @@ export async function POST(req: Request) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
+    if (!stripe) {
+      return new NextResponse('Payment system not configured', { status: 503 });
+    }
+
     const { extensionId, price, name } = await req.json();
 
     const checkoutSession = await stripe.checkout.sessions.create({
@@ -26,8 +30,8 @@ export async function POST(req: Request) {
         },
       ],
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?success=true`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/extensions?canceled=true`,
+      success_url: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/dashboard?success=true`,
+      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/extensions?canceled=true`,
       metadata: {
         extensionId,
         userId: session.user.id!,
@@ -36,7 +40,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ url: checkoutSession.url });
   } catch (error) {
-    console.error('STRIIPE_CHECKOUT_ERROR', error);
+    console.error('STRIPE_CHECKOUT_ERROR', error);
     return new NextResponse('Internal Error', { status: 500 });
   }
 }
