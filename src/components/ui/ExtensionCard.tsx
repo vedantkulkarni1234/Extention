@@ -1,8 +1,8 @@
 'use client';
 
-import { motion, useMotionValue, useSpring, useTransform, useScroll, useTransform as useScrollTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Extension } from '@/data/extensions';
-import { Terminal, Shield, Zap, Target, ArrowUpRight, Sparkles, Crown, Star } from 'lucide-react';
+import { Terminal, Shield, Zap, Target, ArrowUpRight, Sparkles, Crown, Star, Coffee } from 'lucide-react';
 import React, { useRef } from 'react';
 
 const icons = {
@@ -192,27 +192,28 @@ export default function ExtensionCard({ extension }: { extension: Extension }) {
             ))}
           </div>
 
-          {/* Enhanced price and CTA section */}
+          {/* Enhanced CTA section with subtle donation placeholder */}
           <div className="flex items-center justify-between pt-6 border-t border-white/10 group-hover:border-white/20 transition-colors">
             <div className="flex flex-col items-start">
-              <motion.div 
-                className="flex items-baseline space-x-1"
-                whileHover={{ scale: 1.05 }}
-              >
-                <span className="text-lg text-gray-400 font-mono">$</span>
-                <span className="text-4xl font-bold font-mono text-gradient group-hover:scale-110 transition-transform">
-                  {extension.price}
-                </span>
-              </motion.div>
               <div className="flex items-center space-x-1 mt-1">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-3 h-3 text-yellow-400 fill-current opacity-60" />
                 ))}
                 <span className="text-xs text-gray-500 ml-2">(4.9)</span>
               </div>
+              {/* Subtle donation placeholder - very small and unobtrusive */}
+              <motion.a
+                href="#"
+                className="flex items-center space-x-1 text-xs text-gray-500 hover:text-cyan-400 transition-colors mt-2"
+                whileHover={{ scale: 1.05 }}
+                title="Support development"
+              >
+                <Coffee className="w-3 h-3" />
+                <span className="font-mono">Support</span>
+              </motion.a>
             </div>
-            
-            <motion.button 
+
+            <motion.button
               className="group/btn relative px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 text-black text-sm font-bold uppercase rounded-xl hover:shadow-[0_0_30px_rgba(0,255,255,0.4)] transition-all overflow-hidden border-premium"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
@@ -232,7 +233,7 @@ export default function ExtensionCard({ extension }: { extension: Extension }) {
                   <ArrowUpRight className="w-4 h-4" />
                 </motion.div>
               </span>
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent"
                 initial={{ x: '-100%' }}
                 whileHover={{ x: '100%' }}
