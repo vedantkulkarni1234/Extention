@@ -1,5 +1,4 @@
 import { auth } from "@/auth";
-import { prisma } from "@/lib/db";
 import { redirect } from "next/navigation";
 import Navbar from "@/components/ui/Navbar";
 import { Download, Package, ShieldCheck } from "lucide-react";
@@ -11,11 +10,6 @@ export default async function DashboardPage() {
   if (!session?.user) {
     redirect("/api/auth/signin");
   }
-
-  const userPurchases = await prisma.purchase.findMany({
-    where: { userId: session.user.id },
-    include: { extension: true },
-  });
 
   return (
     <div className="min-h-screen bg-black">
@@ -41,34 +35,13 @@ export default async function DashboardPage() {
               Your Arsenal
             </h2>
             
-            {userPurchases.length === 0 ? (
-              <div className="p-12 border border-dashed border-white/10 text-center">
-                <Package className="w-12 h-12 text-gray-700 mx-auto mb-4" />
-                <p className="text-gray-500 mb-6">You haven't acquired any tools yet.</p>
-                <Link href="/extensions" className="text-cyan-500 hover:underline uppercase text-sm font-mono tracking-widest">
-                  Browse Extensions {'->'}
-                </Link>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 gap-4">
-                {userPurchases.map((purchase) => (
-                  <div key={purchase.id} className="p-6 bg-zinc-900/50 border border-white/5 flex items-center justify-between group hover:border-cyan-500/30 transition-colors">
-                    <div>
-                      <h3 className="text-lg font-bold font-heading uppercase group-hover:text-cyan-500 transition-colors">
-                        {purchase.extension.name}
-                      </h3>
-                      <p className="text-xs text-gray-500 font-mono uppercase tracking-widest mt-1">
-                        Purchased on {new Date(purchase.createdAt).toLocaleDateString()}
-                      </p>
-                    </div>
-                    <button className="flex items-center space-x-2 px-4 py-2 bg-white text-black font-bold text-xs uppercase hover:bg-cyan-500 transition-colors">
-                      <Download className="w-4 h-4" />
-                      <span>Download</span>
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
+            <div className="p-12 border border-dashed border-white/10 text-center">
+              <Package className="w-12 h-12 text-gray-700 mx-auto mb-4" />
+              <p className="text-gray-500 mb-6">All extensions are freely available.</p>
+              <Link href="/extensions" className="text-cyan-500 hover:underline uppercase text-sm font-mono tracking-widest">
+                Browse Extensions {'->'}
+              </Link>
+            </div>
           </div>
           
           <div className="space-y-8">
@@ -95,9 +68,9 @@ export default async function DashboardPage() {
               <p className="text-sm text-gray-500 mb-6">
                 Our support team of veteran researchers is available 24/7.
               </p>
-              <button className="w-full py-3 border border-white/10 text-xs font-bold uppercase hover:bg-white/5 transition-colors">
+              <Link href="/support" className="w-full py-3 border border-white/10 text-xs font-bold uppercase hover:bg-white/5 transition-colors block text-center">
                 Contact Support
-              </button>
+              </Link>
             </div>
           </div>
         </div>

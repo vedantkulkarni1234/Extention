@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Terminal, ShoppingCart, Sparkles, Crown, Menu, X } from 'lucide-react';
+import { Terminal, Sparkles, Crown, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
@@ -114,25 +114,6 @@ export default function Navbar() {
                 transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
               >
                 <Terminal className="w-5 h-5 text-gray-300 group-hover:text-cyan-400 transition-colors" />
-              </motion.div>
-              <motion.div
-                className="absolute inset-0 bg-cyan-500/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity"
-                whileHover={{ scale: 1.1 }}
-              />
-            </motion.button>
-            
-            <motion.button 
-              className="relative p-3 hover:bg-white/10 rounded-xl transition-all hover:scale-110 group backdrop-blur-xl"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <ShoppingCart className="w-5 h-5 text-gray-300 group-hover:text-cyan-400 transition-colors" />
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-full flex items-center justify-center text-[10px] font-bold text-black shadow-lg"
-              >
-                2
               </motion.div>
               <motion.div
                 className="absolute inset-0 bg-cyan-500/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity"

@@ -50,9 +50,11 @@ export default function TermsPage() {
                 </p>
                 <ul className="space-y-3 text-gray-400">
                   {[
-                    'Single Tactical: One user, one browser, one extension',
-                    'Hunter Bundle: One user, multiple browsers, five extensions',
-                    'Total Arsenal: One user, unlimited browsers, all extensions',
+                    'Free Access: Unlimited usage of all extensions',
+                    'No restrictions on browsers or devices',
+                    'Lifetime access to all tools and future updates',
+                    'Full feature access with no limitations',
+                    'Community support and documentation included',
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start space-x-3">
                       <Check className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
@@ -104,11 +106,14 @@ export default function TermsPage() {
               </div>
               
               <div className="glass-effect rounded-2xl p-8 border border-white/10 mb-8">
-                <h2 className="text-2xl font-bold font-heading text-white mb-4">5. Payment and Refunds</h2>
+                <h2 className="text-2xl font-bold font-heading text-white mb-4">5. Free Access Model</h2>
+                <p className="text-gray-400 leading-relaxed mb-4">
+                  All Hacker's Arsenal extensions are provided completely free of charge. No payment is required, 
+                  no subscription fees, and no limitations on usage. You have unlimited access to all tools and features.
+                </p>
                 <p className="text-gray-400 leading-relaxed">
-                  All purchases are one-time payments with lifetime access. We offer a 30-day money-back 
-                  guarantee. If you're not satisfied, contact support for a full refund. Refunds are 
-                  processed within 5-7 business days.
+                  While our tools are free, we encourage voluntary support through optional donations to help 
+                  fund continued development and maintenance of these security research tools.
                 </p>
               </div>
               
