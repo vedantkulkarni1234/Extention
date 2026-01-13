@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Shield, Terminal, ShoppingCart, User, Sparkles, Crown, Menu, X } from 'lucide-react';
+import { Terminal, ShoppingCart, Sparkles, Crown, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 

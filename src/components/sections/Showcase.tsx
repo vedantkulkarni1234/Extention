@@ -93,7 +93,7 @@ export default function Showcase() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-flex items-center space-x-3 px-6 py-3 rounded-full glass-effect-hover border border-cyan-500/30 text-cyan-300 text-sm font-mono mb-8 uppercase tracking-[0.2em] shimmer"
+              className="inline-flex items-center space-x-3 px-6 py-3 rounded-full glass-effect-hover border border-green-500/30 text-green-300 text-sm font-mono mb-8 uppercase tracking-[0.2em] shimmer"
             >
               <motion.div
                 animate={{ rotate: 360 }}
@@ -105,9 +105,9 @@ export default function Showcase() {
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="px-3 py-1 bg-gradient-to-r from-cyan-500 to-purple-500 text-black rounded-full text-xs font-bold"
+                className="px-3 py-1 bg-gradient-to-r from-green-500 to-cyan-500 text-black rounded-full text-xs font-bold"
               >
-                PREMIUM
+                FREE
               </motion.div>
             </motion.div>
             
@@ -305,15 +305,15 @@ export default function Showcase() {
               >
                 Command the <span className="text-gradient">Complete Arsenal</span>
               </motion.h3>
-              <motion.p 
+              <motion.p
                 className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
-                Unlock unlimited potential with all 17+ premium extensions. 
-                Save 40% and join the elite ranks of security researchers.
+                Unlock unlimited potential with all 17+ premium extensions.
+                Completely free, no restrictions, lifetime access.
               </motion.p>
               
               <motion.div 
@@ -323,8 +323,8 @@ export default function Showcase() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.7, duration: 0.6 }}
               >
-                <motion.button 
-                  className="group relative px-12 py-6 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 text-black font-bold rounded-2xl hover:shadow-[0_0_60px_rgba(0,255,255,0.5)] transition-all uppercase tracking-wider text-sm overflow-hidden border-premium"
+                <motion.button
+                  className="group relative px-12 py-6 bg-gradient-to-r from-green-500 via-cyan-500 to-green-500 text-black font-bold rounded-2xl hover:shadow-[0_0_60px_rgba(0,255,255,0.5)] transition-all uppercase tracking-wider text-sm overflow-hidden border-premium"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -335,24 +335,23 @@ export default function Showcase() {
                     >
                       <Crown className="w-6 h-6" />
                     </motion.div>
-                    <span>Acquire Total Arsenal</span>
+                    <span>Get All Extensions Free</span>
                     <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform" />
                   </span>
-                  <motion.div 
+                  <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent"
                     initial={{ x: '-100%' }}
                     whileHover={{ x: '100%' }}
                     transition={{ duration: 0.6 }}
                   />
                 </motion.button>
-                
-                <motion.div 
+
+                <motion.div
                   className="text-center"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="text-3xl font-bold text-gradient">$499</div>
-                  <div className="text-sm text-gray-500 line-through">$830</div>
-                  <div className="text-xs text-cyan-400 font-mono">Save $331</div>
+                  <div className="text-3xl font-bold text-gradient">FREE</div>
+                  <div className="text-xs text-green-400 font-mono">All extensions unlocked</div>
                 </motion.div>
               </motion.div>
             </div>

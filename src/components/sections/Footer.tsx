@@ -1,6 +1,6 @@
 'use client';
 
-import { Shield, Github, Twitter, MessageSquare, Mail, Send, Award, Lock } from 'lucide-react';
+import { Shield, Github, Twitter, MessageSquare, Mail, Send, Award, Lock, Coffee, Heart } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
@@ -64,8 +64,8 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-gray-400 text-sm max-w-sm mb-8 leading-relaxed">
-              Premium browser extensions for professional bug bounty hunters and security researchers. 
-              Elevate your craft with our elite toolset trusted by thousands.
+              Free browser extensions for professional bug bounty hunters and security researchers.
+              Elite toolset trusted by thousands, now available to everyone.
             </p>
             <div className="flex items-center space-x-4">
               <a
@@ -123,19 +123,65 @@ export default function Footer() {
 
         {/* Trust badges */}
         <div className="mb-12 flex flex-wrap items-center justify-center gap-8 py-8 border-y border-white/5">
-          <div className="flex items-center space-x-2 text-gray-400">
-            <Award className="w-5 h-5 text-cyan-400" />
-            <span className="text-sm font-mono">50K+ Active Users</span>
-          </div>
-          <div className="flex items-center space-x-2 text-gray-400">
-            <Shield className="w-5 h-5 text-purple-400" />
-            <span className="text-sm font-mono">Industry Leading Security</span>
-          </div>
-          <div className="flex items-center space-x-2 text-gray-400">
-            <Lock className="w-5 h-5 text-green-400" />
-            <span className="text-sm font-mono">256-bit Encryption</span>
-          </div>
+         <div className="flex items-center space-x-2 text-gray-400">
+           <Award className="w-5 h-5 text-cyan-400" />
+           <span className="text-sm font-mono">50K+ Active Users</span>
+         </div>
+         <div className="flex items-center space-x-2 text-gray-400">
+           <Shield className="w-5 h-5 text-purple-400" />
+           <span className="text-sm font-mono">Industry Leading Security</span>
+         </div>
+         <div className="flex items-center space-x-2 text-gray-400">
+           <Lock className="w-5 h-5 text-green-400" />
+           <span className="text-sm font-mono">256-bit Encryption</span>
+         </div>
         </div>
+
+        {/* Very subtle support section */}
+        <motion.div
+         initial={{ opacity: 0, y: 20 }}
+         whileInView={{ opacity: 1, y: 0 }}
+         viewport={{ once: true }}
+         className="mb-12 text-center"
+        >
+         <div className="inline-flex items-center space-x-3 px-6 py-3 rounded-full glass-effect border border-white/10 text-cyan-300 text-sm font-mono mb-4 uppercase tracking-[0.2em]">
+           <Coffee className="w-4 h-4" />
+           <span>Support Our Mission</span>
+         </div>
+
+         <p className="text-lg text-gray-400 mb-8 leading-relaxed max-w-2xl mx-auto">
+           All extensions are completely free. If you find value in these tools, consider supporting our development efforts.
+         </p>
+
+         {/* Very subtle donation options */}
+         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+           <motion.a
+             href="#"
+             className="group relative px-6 py-3 glass-effect border border-white/10 text-white hover:bg-white/5 hover:border-cyan-500/30 transition-all rounded-xl flex items-center space-x-2 text-sm"
+             whileHover={{ scale: 1.05 }}
+             title="Buy me a coffee"
+           >
+             <Coffee className="w-4 h-4 text-yellow-400 group-hover:text-yellow-300 transition-colors" />
+             <span className="font-medium">Buy a Coffee</span>
+             <Heart className="w-3 h-3 text-red-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+           </motion.a>
+
+           <motion.a
+             href="#"
+             className="group relative px-6 py-3 glass-effect border border-white/10 text-white hover:bg-white/5 hover:border-purple-500/30 transition-all rounded-xl flex items-center space-x-2 text-sm"
+             whileHover={{ scale: 1.05 }}
+             title="Support development"
+           >
+             <Shield className="w-4 h-4 text-purple-400 group-hover:text-purple-300 transition-colors" />
+             <span className="font-medium">Support Project</span>
+             <Heart className="w-3 h-3 text-red-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+           </motion.a>
+         </div>
+
+         <p className="text-xs text-gray-500 mt-4 italic">
+           Your support helps us continue developing and maintaining these free security tools for the community.
+         </p>
+        </motion.div>
         
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
