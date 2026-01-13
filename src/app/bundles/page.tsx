@@ -11,38 +11,34 @@ const bundles = [
     name: 'Reconnaissance Bundle',
     description: 'Master the art of discovery with our complete recon toolkit.',
     extensions: ['JS Recon Radar', 'ParamHawk', 'Tech Stack Deep Profiler', 'Recon Aggregator & Auto-Correlator'],
-    price: 149,
-    originalPrice: 172,
     gradient: 'from-cyan-500 to-blue-500',
     icon: '🎯',
+    free: true,
   },
   {
     name: 'Analysis Bundle',
     description: 'Deep-dive into applications with comprehensive analysis tools.',
     extensions: ['AuthFlow Visualizer', 'Response Anomaly Detector (RAD)', 'Smart Diff Engine', 'API Schema Reconstructor', 'WebSocket & Real-Time Traffic Analyzer'],
-    price: 199,
-    originalPrice: 273,
     gradient: 'from-purple-500 to-pink-500',
     icon: '🔍',
     popular: true,
+    free: true,
   },
   {
     name: 'Exploitation Bundle',
     description: 'Take your findings to the next level with advanced exploitation tools.',
     extensions: ['DOM Sink Tracker', 'Request Mutator Lab', 'Blind Interaction Tracker (BIT)', 'Access Control Matrix Builder'],
-    price: 179,
-    originalPrice: 238,
     gradient: 'from-red-500 to-orange-500',
     icon: '⚔️',
+    free: true,
   },
   {
     name: 'Workflow Bundle',
     description: 'Streamline your workflow with productivity-focused extensions.',
     extensions: ['Scope Guardian + Program Intel Hub', "Hunter's Second Brain", 'Report Generator Pro', 'Workflow Orchestrator & Hotkey Commander'],
-    price: 139,
-    originalPrice: 186,
     gradient: 'from-green-500 to-emerald-500',
     icon: '⚡',
+    free: true,
   },
 ];
 
@@ -71,8 +67,8 @@ export default function BundlesPage() {
             </h1>
             
             <p className="text-xl text-gray-400 leading-relaxed">
-              Maximize your efficiency with expertly curated extension bundles. 
-              Save up to 40% compared to individual purchases.
+              Discover expertly curated extension collections. 
+              All bundles are now completely free - choose your specialization.
             </p>
           </motion.div>
         </div>
@@ -107,7 +103,7 @@ export default function BundlesPage() {
                     <div className="flex items-center justify-between mb-6">
                       <div className="text-5xl">{bundle.icon}</div>
                       <div className={`px-4 py-1 rounded-full bg-gradient-to-r ${bundle.gradient} text-black text-xs font-bold uppercase`}>
-                        Save {Math.round((1 - bundle.price / bundle.originalPrice) * 100)}%
+                        {bundle.free ? 'FREE' : 'Premium'}
                       </div>
                     </div>
                     
@@ -127,20 +123,15 @@ export default function BundlesPage() {
                     {/* Price & CTA */}
                     <div className="flex items-center justify-between pt-6 border-t border-white/10">
                       <div>
-                        <div className="flex items-baseline space-x-1">
-                          <span className="text-gray-400 font-mono">$</span>
-                          <span className={`text-4xl font-bold font-mono ${bundle.popular ? 'text-gradient' : 'text-white'}`}>
-                            {bundle.price}
-                          </span>
-                        </div>
-                        <div className="text-sm text-gray-500 line-through font-mono">${bundle.originalPrice}</div>
+                        <div className="text-3xl font-bold font-mono text-gradient">FREE</div>
+                        <div className="text-sm text-green-400 font-mono">Complete bundle unlocked</div>
                       </div>
                       
                       <Link
-                        href="/checkout"
+                        href="/extensions"
                         className={`px-6 py-3 bg-gradient-to-r ${bundle.gradient} text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(0,255,255,0.3)] transition-all hover:scale-105 flex items-center space-x-2`}
                       >
-                        <span>Acquire</span>
+                        <span>Get Bundle</span>
                         <ArrowRight className="w-4 h-4" />
                       </Link>
                     </div>
@@ -164,18 +155,17 @@ export default function BundlesPage() {
             <div className="glass-effect rounded-3xl p-12 border border-white/10">
               <Shield className="w-16 h-16 text-cyan-400 mx-auto mb-6" />
               <h2 className="text-3xl font-bold font-heading mb-4">
-                Need a <span className="text-gradient">Custom Bundle</span>?
+                Need <span className="text-gradient">Individual</span> Extensions?
               </h2>
               <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-                Contact our sales team for custom enterprise packages, team licenses, or 
-                personalized extension combinations.
+                Browse our complete collection of free extensions. Mix and match to create your perfect security toolkit.
               </p>
               <Link
-                href="/support"
-                className="inline-flex items-center space-x-3 px-8 py-4 bg-white text-black font-bold rounded-xl hover:bg-cyan-400 hover:shadow-[0_0_30px_rgba(0,255,255,0.3)] transition-all"
+                href="/extensions"
+                className="inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-black font-bold rounded-xl hover:shadow-[0_0_30px_rgba(0,255,255,0.3)] transition-all"
               >
                 <Zap className="w-5 h-5" />
-                <span>Contact Sales</span>
+                <span>Browse All Extensions</span>
               </Link>
             </div>
           </motion.div>

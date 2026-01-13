@@ -188,7 +188,10 @@ export default function RoadmapPage() {
                       <p className="text-gray-300 group-hover:text-white transition-colors">{release.changes}</p>
                     </div>
                   </div>
-                  <button className="p-3 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-gray-400 hover:text-cyan-400 transition-all">
+                  <button 
+                    onClick={() => window.open('/extensions', '_blank')}
+                    className="p-3 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-gray-400 hover:text-cyan-400 transition-all"
+                  >
                     <Download className="w-5 h-5" />
                   </button>
                 </motion.div>

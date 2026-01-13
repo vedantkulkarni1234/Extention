@@ -42,20 +42,20 @@ const supportOptions = [
 
 const faqs = [
   {
-    question: 'How do I activate my license?',
-    answer: 'After purchase, you\'ll receive an email with your license key and activation link. Open any Arsenal extension, click the menu, and select "Activate License" to enter your key.',
+    question: 'How do I download and install the extensions?',
+    answer: 'All extensions are completely free. Simply browse our extension collection, click on any tool you want, and you\'ll be directed to install it directly from your browser\'s extension store. No payment or registration required.',
   },
   {
-    question: 'Can I use my extensions on multiple browsers?',
-    answer: 'Single Tactical licenses work on one browser. Hunter Bundle includes Chrome and Firefox. Total Arsenal includes unlimited browser licenses across all supported platforms.',
+    question: 'Can I use extensions on multiple browsers?',
+    answer: 'Yes! All extensions work across Chrome, Firefox, and other supported browsers. There are no restrictions on browser choice or device limitations.',
   },
   {
     question: 'What if an extension isn\'t working correctly?',
     answer: 'First, try clearing your browser cache and restarting the extension. If issues persist, check our troubleshooting guide in the documentation or contact support with details about the problem.',
   },
   {
-    question: 'Do you offer refunds?',
-    answer: 'Yes! We offer a 30-day money-back guarantee. If you\'re not satisfied with any product, contact our support team for a full refund, no questions asked.',
+    question: 'Do you accept donations or support?',
+    answer: 'While all our tools are completely free, we appreciate voluntary donations to help fund continued development. You can support our work through the donation options in our footer or support sections.',
   },
   {
     question: 'How do I report a security vulnerability in your tools?',

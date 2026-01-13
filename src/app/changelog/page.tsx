@@ -185,10 +185,13 @@ export default function ChangelogPage() {
                   {/* Download Button for Major Releases */}
                   {release.type === 'major' && (
                     <div className="mt-4 flex justify-end">
-                      <button className="flex items-center space-x-2 text-sm text-cyan-400 hover:text-cyan-300 transition-colors">
+                      <Link 
+                        href="/extensions"
+                        className="flex items-center space-x-2 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
+                      >
                         <Download className="w-4 h-4" />
                         <span>Download Release Assets</span>
-                      </button>
+                      </Link>
                     </div>
                   )}
                 </motion.div>
