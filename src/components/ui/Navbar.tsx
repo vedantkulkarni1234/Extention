@@ -1,13 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import { Terminal, Sparkles, Crown, Menu, X } from 'lucide-react';
+import { Terminal, Sparkles, Crown, Menu, X, User, LogOut } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { signOut } from 'next-auth/react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +19,35 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    // Check if user is authenticated
+    const checkAuth = async () => {
+      try {
+        const response = await fetch('/api/auth/session');
+        const session = await response.json();
+        if (session?.user) {
+          setIsAuthenticated(true);
+          setUserEmail(session.user.email || null);
+        } else {
+          setIsAuthenticated(false);
+          setUserEmail(null);
+        }
+      } catch (error) {
+        setIsAuthenticated(false);
+        setUserEmail(null);
+      }
+    };
+
+    checkAuth();
+    // Check auth periodically
+    const interval = setInterval(checkAuth, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleSignOut = async () => {
+    await signOut({ callbackUrl: '/' });
+  };
 
   const navItems = [
     { label: 'Extensions', href: '/extensions' },
@@ -104,7 +136,7 @@ export default function Navbar() {
 
           {/* Enhanced action buttons */}
           <div className="flex items-center space-x-4">
-            <motion.button 
+            <motion.button
               className="p-3 hover:bg-white/10 rounded-xl transition-all hover:scale-110 group relative backdrop-blur-xl"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -120,29 +152,58 @@ export default function Navbar() {
                 whileHover={{ scale: 1.1 }}
               />
             </motion.button>
-            
-            <motion.button 
-              className="hidden sm:flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 rounded-xl text-sm font-bold text-black hover:shadow-[0_0_40px_rgba(0,255,255,0.4)] transition-all group border-premium overflow-hidden"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="relative z-10 flex items-center space-x-3">
-                <motion.div
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+
+            {isAuthenticated ? (
+              <div className="hidden sm:flex items-center space-x-3">
+                <Link
+                  href="/dashboard"
+                  className="flex items-center space-x-2 px-5 py-3 glass-effect border border-white/10 rounded-xl text-sm font-semibold text-gray-300 hover:text-cyan-400 hover:border-cyan-500/50 transition-all group hover-lift"
                 >
-                  <Sparkles className="w-4 h-4" />
-                </motion.div>
-                <span>Begin Journey</span>
-              </span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '100%' }}
-                transition={{ duration: 0.6 }}
-              />
-            </motion.button>
-            
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <User className="w-4 h-4" />
+                  </motion.div>
+                  <span>{userEmail?.split('@')[0]}</span>
+                </Link>
+                <motion.button
+                  onClick={handleSignOut}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center space-x-2 px-5 py-3 border border-white/10 rounded-xl text-sm font-semibold text-gray-300 hover:text-red-400 hover:border-red-500/50 transition-all hover-lift"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span>Sign Out</span>
+                </motion.button>
+              </div>
+            ) : (
+              <Link
+                href="/signin"
+                className="hidden sm:flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 rounded-xl text-sm font-bold text-black hover:shadow-[0_0_40px_rgba(0,255,255,0.4)] transition-all group border-premium overflow-hidden"
+              >
+                <motion.span
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative z-10 flex items-center space-x-3"
+                >
+                  <motion.div
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                  >
+                    <Sparkles className="w-4 h-4" />
+                  </motion.div>
+                  <span>Begin Journey</span>
+                </motion.span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.6 }}
+                />
+              </Link>
+            )}
+
             {/* Mobile menu toggle */}
             <motion.button 
               className="p-3 hover:bg-white/10 rounded-xl transition-all hover:scale-110 group relative lg:hidden"
@@ -215,12 +276,39 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.4 }}
-                  className="pt-4 border-t border-white/10"
+                  className="pt-4 border-t border-white/10 space-y-3"
                 >
-                  <button className="w-full flex items-center justify-center space-x-3 px-6 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl text-sm font-bold text-black hover:shadow-[0_0_30px_rgba(0,255,255,0.3)] transition-all">
-                    <Sparkles className="w-4 h-4" />
-                    <span>Begin Journey</span>
-                  </button>
+                  {isAuthenticated ? (
+                    <>
+                      <Link
+                        href="/dashboard"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="w-full flex items-center space-x-3 px-6 py-4 glass-effect border border-white/10 rounded-xl text-sm font-semibold text-gray-300 hover:text-cyan-400 hover:border-cyan-500/50 transition-all"
+                      >
+                        <User className="w-4 h-4" />
+                        <span>{userEmail?.split('@')[0]}</span>
+                      </Link>
+                      <button
+                        onClick={() => {
+                          handleSignOut();
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="w-full flex items-center justify-center space-x-3 px-6 py-4 border border-white/10 rounded-xl text-sm font-semibold text-gray-300 hover:text-red-400 hover:border-red-500/50 transition-all"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        <span>Sign Out</span>
+                      </button>
+                    </>
+                  ) : (
+                    <Link
+                      href="/signin"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="w-full flex items-center justify-center space-x-3 px-6 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl text-sm font-bold text-black hover:shadow-[0_0_30px_rgba(0,255,255,0.3)] transition-all"
+                    >
+                      <Sparkles className="w-4 h-4" />
+                      <span>Begin Journey</span>
+                    </Link>
+                  )}
                 </motion.div>
               </div>
             </div>
