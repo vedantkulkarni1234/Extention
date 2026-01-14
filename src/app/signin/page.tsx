@@ -54,45 +54,69 @@ export default function SignInPage() {
     <div className="min-h-screen bg-black flex overflow-hidden relative">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
+        {/* Subtle mesh grid overlay */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }} />
+
+        {/* Primary gradient orbs */}
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
-            rotate: [0, 90, 0],
+            scale: [1, 1.3, 1],
+            opacity: [0.25, 0.5, 0.25],
+            rotate: [0, 120, 0],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-60 -left-60 w-[500px] h-[500px] bg-gradient-to-br from-cyan-500/20 via-purple-500/10 to-cyan-500/20 rounded-full blur-[120px]"
+        />
+        <motion.div
+          animate={{
+            scale: [1.3, 1, 1.3],
+            opacity: [0.35, 0.2, 0.35],
+            rotate: [120, 0, 120],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-full blur-[100px]"
+          className="absolute -bottom-60 -right-60 w-[500px] h-[500px] bg-gradient-to-br from-purple-500/20 via-cyan-500/10 to-purple-500/20 rounded-full blur-[120px]"
         />
+
+        {/* Secondary accent glow */}
         <motion.div
           animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.4, 0.2, 0.4],
-            rotate: [90, 0, 90],
+            x: ['-10%', '110%'],
+            opacity: [0, 0.3, 0],
           }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute -bottom-40 -right-40 w-96 h-96 bg-gradient-to-br from-purple-500/20 to-cyan-500/20 rounded-full blur-[100px]"
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-transparent via-cyan-500/5 to-transparent rounded-full blur-[150px]"
         />
-        
-        {/* Floating particles */}
-        {[...Array(30)].map((_, i) => (
+
+        {/* Floating particles with enhanced variety */}
+        {[...Array(40)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
+            className={`absolute rounded-full ${
+              i % 3 === 0 ? 'bg-cyan-400/30' : i % 3 === 1 ? 'bg-purple-400/30' : 'bg-white/20'
+            }`}
             animate={{
-              x: [0, Math.random() * 200 - 100],
-              y: [0, Math.random() * 200 - 100],
-              opacity: [0.2, 0.8, 0.2],
-              scale: [1, 1.5, 1],
+              x: [0, Math.random() * 300 - 150],
+              y: [0, Math.random() * 300 - 150],
+              opacity: [0.15, 0.7, 0.15],
+              scale: [1, Math.random() * 1.5 + 0.5, 1],
             }}
             transition={{
-              duration: Math.random() * 10 + 10,
+              duration: Math.random() * 15 + 15,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: Math.random() * 5,
+              delay: Math.random() * 8,
             }}
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
             }}
           />
         ))}
@@ -201,13 +225,30 @@ export default function SignInPage() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="w-full max-w-md"
         >
-          <div className="glass-effect rounded-3xl border border-white/10 p-8 lg:p-10 backdrop-blur-2xl relative overflow-hidden">
+          <div className="glass-effect rounded-3xl border border-white/10 p-8 lg:p-10 backdrop-blur-2xl relative overflow-hidden shadow-2xl shadow-black/50">
             {/* Shimmer effect */}
-            <div className="absolute inset-0 shimmer pointer-events-none opacity-30" />
-            
-            {/* Glow effect on hover */}
-            <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-full blur-[60px]" />
-            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-br from-purple-500/20 to-cyan-500/20 rounded-full blur-[60px]" />
+            <div className="absolute inset-0 shimmer pointer-events-none opacity-20" />
+
+            {/* Enhanced glow effects */}
+            <motion.div
+              animate={{
+                scale: [1, 1.1, 1],
+                opacity: [0.3, 0.5, 0.3],
+              }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-32 -right-32 w-64 h-64 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-full blur-[80px]"
+            />
+            <motion.div
+              animate={{
+                scale: [1.1, 1, 1.1],
+                opacity: [0.4, 0.2, 0.4],
+              }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+              className="absolute -bottom-32 -left-32 w-64 h-64 bg-gradient-to-br from-purple-500/20 to-cyan-500/20 rounded-full blur-[80px]"
+            />
+
+            {/* Subtle border gradient */}
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5 pointer-events-none" />
 
             <div className="relative z-10">
               <motion.div
@@ -235,22 +276,30 @@ export default function SignInPage() {
                 >
                   {/* Email field */}
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-300 block ml-1">
+                    <label className="text-sm font-medium text-gray-300 block ml-1 flex items-center gap-2">
                       Email Address
                     </label>
                     <div className="relative group">
                       <motion.div
-                        className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"
+                        className="absolute -inset-[2px] bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 blur-sm"
                       />
-                      <div className="relative flex items-center bg-black/50 border border-white/10 rounded-xl overflow-hidden transition-colors group-hover:border-white/20">
-                        <Mail className="w-5 h-5 text-gray-500 ml-4" />
+                      <div className="relative flex items-center bg-black/60 border border-white/10 rounded-xl overflow-hidden transition-all duration-300 group-hover:border-white/20 group-focus-within:border-cyan-500/50">
+                        <motion.div
+                          animate={{
+                            color: email ? '#22d3ee' : '#6b7280'
+                          }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <Mail className="w-5 h-5 ml-4" />
+                        </motion.div>
                         <input
                           type="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="w-full bg-transparent border-0 px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:ring-0"
+                          className="w-full bg-transparent border-0 px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:ring-0 transition-all duration-300"
                           placeholder="you@example.com"
                           required
+                          autoComplete="email"
                         />
                       </div>
                     </div>
@@ -258,34 +307,44 @@ export default function SignInPage() {
 
                   {/* Password field */}
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-300 block ml-1">
+                    <label className="text-sm font-medium text-gray-300 block ml-1 flex items-center gap-2">
                       Password
                     </label>
                     <div className="relative group">
                       <motion.div
-                        className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"
+                        className="absolute -inset-[2px] bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 blur-sm"
                       />
-                      <div className="relative flex items-center bg-black/50 border border-white/10 rounded-xl overflow-hidden transition-colors group-hover:border-white/20">
-                        <Lock className="w-5 h-5 text-gray-500 ml-4" />
+                      <div className="relative flex items-center bg-black/60 border border-white/10 rounded-xl overflow-hidden transition-all duration-300 group-hover:border-white/20 group-focus-within:border-cyan-500/50">
+                        <motion.div
+                          animate={{
+                            color: password ? '#22d3ee' : '#6b7280'
+                          }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <Lock className="w-5 h-5 ml-4" />
+                        </motion.div>
                         <input
                           type={showPassword ? 'text' : 'password'}
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
-                          className="w-full bg-transparent border-0 px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:ring-0"
+                          className="w-full bg-transparent border-0 px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:ring-0 transition-all duration-300"
                           placeholder="••••••••"
                           required
+                          autoComplete="current-password"
                         />
-                        <button
+                        <motion.button
                           type="button"
                           onClick={() => setShowPassword(!showPassword)}
                           className="px-4 text-gray-500 hover:text-cyan-400 transition-colors"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
                         >
                           {showPassword ? (
                             <EyeOff className="w-5 h-5" />
                           ) : (
                             <Eye className="w-5 h-5" />
                           )}
-                        </button>
+                        </motion.button>
                       </div>
                     </div>
                   </div>
@@ -298,13 +357,17 @@ export default function SignInPage() {
                           type="checkbox"
                           className="sr-only peer"
                         />
-                        <div className="w-5 h-5 bg-black/50 border-2 border-white/20 rounded-lg peer-checked:border-cyan-500 transition-colors" />
                         <motion.div
-                          initial={{ scale: 0 }}
+                          className="w-5 h-5 bg-black/60 border-2 border-white/20 rounded-lg transition-all duration-300 peer-checked:border-cyan-500 peer-checked:bg-cyan-500/10"
+                          whileTap={{ scale: 0.95 }}
+                        />
+                        <motion.div
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ scale: 0, opacity: 0 }}
                           whileTap={{ scale: 0.9 }}
-                          className="absolute inset-0 flex items-center justify-center opacity-0 peer-checked:opacity-100"
+                          className="absolute inset-0 flex items-center justify-center peer-checked:animate-in peer-checked:fade-in peer-checked:zoom-in"
                         >
-                          <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
                         </motion.div>
                       </div>
                       <span className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
@@ -313,7 +376,7 @@ export default function SignInPage() {
                     </label>
                     <Link
                       href="/forgot-password"
-                      className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
+                      className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors font-medium hover:underline underline-offset-4 decoration-cyan-400/50"
                     >
                       Forgot password?
                     </Link>
@@ -339,26 +402,35 @@ export default function SignInPage() {
                     disabled={isLoading}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full py-4 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 text-black font-bold rounded-xl hover:shadow-[0_0_40px_rgba(0,255,255,0.3)] transition-all relative overflow-hidden border-premium disabled:opacity-50 disabled:cursor-not-allowed button-glow"
+                    className="w-full py-4 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 bg-[length:200%_100%] text-black font-bold rounded-xl hover:bg-[position:100%_0] hover:shadow-[0_0_50px_rgba(0,255,255,0.4)] transition-all duration-500 relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed group"
                   >
                     <span className="relative z-10 flex items-center justify-center space-x-3">
                       {isLoading ? (
                         <>
                           <motion.div
                             animate={{ rotate: 360 }}
-                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
                             className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full"
                           />
-                          <span>Signing in...</span>
+                          <span>Authenticating...</span>
                         </>
                       ) : (
                         <>
                           <span>Sign In</span>
-                          <ArrowRight className="w-5 h-5" />
+                          <motion.div
+                            animate={{ x: [0, 5, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                          >
+                            <ArrowRight className="w-5 h-5" />
+                          </motion.div>
                         </>
                       )}
                     </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-white/30 translate-x-[-100%]"
+                      whileHover={{ translateX: ['0%', '200%'] }}
+                      transition={{ duration: 0.8, ease: "easeInOut" }}
+                    />
                   </motion.button>
                 </motion.div>
               </form>
